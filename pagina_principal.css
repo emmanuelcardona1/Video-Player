@@ -1,0 +1,80 @@
+
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Impact', sans-serif; /* O una fuente similar */
+  text-align: center;
+  padding: 20px;
+
+}
+button {
+  display: flex;
+  --accent: rgba(255, 255, 255, 0.471);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-radius: 5px;
+  border-color: aliceblue;
+  background-color: #212121;
+  cursor: pointer;
+  color: white;
+  padding: 8px 30px;
+  transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
+    letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
+  flex-direction: column;
+  margin: 5px;
+ 
+}
+
+button:hover {
+  box-shadow: var(--hover-shadows);
+}
+
+button:active {
+  box-shadow: var(--hover-shadows), var(--accent) 0px 0px 30px 5px;
+  background-color: var(--accent);
+  transform: scale(0.95);
+}
+.padre {
+  display: flex;
+  justify-content: center;
+  
+}
+
+button{
+ margin-left: 25px;
+}
+
+.programacion{
+    margin-top: 20px;
+}
+.botonescaballos{
+
+    margin-left: 16px;
+}
+h1 {
+    color: white;
+    font-size: 25px; /* Tamaño del texto */
+    font-weight: 900; /* Grosor de la fuente */
+    text-transform: uppercase; /* Todo el texto en mayúsculas */
+    margin-top: 0px ;
+    padding-top: 0px;
+  }
+  
+  
+  h2 {
+    color: white;
+    font-size: 16px; /* Tamaño más pequeño */
+    font-weight: 700; /* Grosor más fino pero aún fuerte */
+    text-transform: uppercase;
+    margin-bottom: 0px ;
+    padding-bottom: 0px;
+   
+  }
+  a{
+    text-decoration: none;
+  }
+  nav{
+    display: flex;
+    justify-content: end;
+  }
+  

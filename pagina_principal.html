@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <link rel="icon" type="image/png" href="indexIMG/logo.jpg">
+    <link rel="stylesheet" href="pagina_principal.css">
+    <script>
+        // Verificar si el usuario está autenticado
+function verificarAutenticacion() {
+  const autenticado = sessionStorage.getItem("autenticado");
+
+  if (autenticado !== "true") {
+    // Si no está autenticado, redirigir a la página de login
+    window.location.href = "./index.html";
+  }
+}
+
+// Ejecutar la verificación cuando la página cargue
+window.onload = verificarAutenticacion;
+
+
+    </script>
+    <script>// Función para cerrar la sesión
+        // Función para cerrar la sesión
+        function cerrarSesion() {
+          // Elimina el indicador de autenticación
+          sessionStorage.removeItem("autenticado");
+        
+          // Redirige a la página de login
+          window.location.href = "./index.html";
+        }</script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <button onclick="cerrarSesion()"> Cerrar sesion</button>
+        </nav>
+    </header>
+    <main>
+        <div class="padre">
+
+
+            <div class="caballos">
+
+                <h2  style="text-align: start;"> video </h2>
+                <h1 >carreras caballos</h1>
+                <div class="botonescaballos">  
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                    <a href=""> <button type="submit"> gulfstream</button></a>
+                  
+                    
+                    
+              
+            </div> 
+            </div>
+            <div class="multivideo">
+                <h2  style="text-align: center"> VIDEO </h2>
+                <h1 >canales multivideo</h1>
+                <a href=""> <button type="submit" style="margin-left: 159px;"> Capital otb</button> </a>
+                
+                
+                <div class="programacion">
+
+                    <img src="programacion/WhatsApp Image 2024-10-08 at 4.40.41 PM.jpeg" alt="programacion" style="height: 900px; width: 470px; ">
+
+
+
+                </div>
+            </div>
+            <div class="carretas ">
+
+                <h2  style="text-align: end;"> VIDEO </h2>
+                <h1 >carreras carretas</h1>
+                <a href="rtmp://wms.robertsstream.com/flashlive/presque_downs_hd_fm_2200?tkhash=4vYZCH90VW5KGTIKANi_FZM7i7KD_wEfYkG168g7K1M=&cust=RTN&type=live&user=48744&optp=pid:38|tid:&tkendtime=1728440266 "> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+                <a href=""> <button type="submit"> gulfstream</button></a>
+
+            </div>
+
+
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+
+</html>
