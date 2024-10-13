@@ -1,5 +1,6 @@
 
 body {
+  
   background-color: black;
   color: white;
   font-family: 'Impact', sans-serif; /* O una fuente similar */
@@ -7,7 +8,11 @@ body {
   padding: 20px;
 
 }
+
 button {
+  letter-spacing: -0.4px;
+  align-items: center;
+  white-space: nowrap;
   display: flex;
   --accent: rgba(255, 255, 255, 0.471);
   font-weight: bold;
@@ -21,8 +26,12 @@ button {
   transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
     letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
   flex-direction: column;
-  margin: 5px;
+  margin: 4px;
+  width: 190px;
  
+
+ 
+  
 }
 
 button:hover {
@@ -51,7 +60,8 @@ button{
 
     margin-left: 16px;
 }
-h1 {
+h1{
+    
     color: white;
     font-size: 25px; /* Tamaño del texto */
     font-weight: 900; /* Grosor de la fuente */
