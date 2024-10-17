@@ -10,7 +10,7 @@ body {
 }
 
 button {
-  letter-spacing: -0.4px;
+  letter-spacing: -0.3px;
   align-items: center;
   white-space: nowrap;
   display: flex;
