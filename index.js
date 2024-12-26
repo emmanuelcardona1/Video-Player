@@ -1,1 +1,61 @@
-function _0x5f25(){const _0x3f5da3=['find','quevedo25','727021ahOLZa','belen','usuario','acevedo','puntola50','prueba','getElementById','true','Colombia1','cartagena','162KpNLpC','targo1624','autenticado','href','maregena32','basti2024','admin','santa2024','causia963','25451370ApqWXK','980958ipfUzO','itagui','value','location','sur2024','18DlbMrZ','Oops...','caucasia','salamina','cartago','test213','error','10175373hDMJkM','74395BqRvNf','leen7845','8077853yDGNvw','trim','8VnaErS','contraseña','pswd1234','471048LEOKbQ','acedo12'];_0x5f25=function(){return _0x3f5da3;};return _0x5f25();}const _0x25a828=_0x4a71;(function(_0x1c9cb5,_0x2740cc){const _0xde30d9=_0x4a71,_0x1ee19a=_0x1c9cb5();while(!![]){try{const _0x22c6bf=-parseInt(_0xde30d9(0xac))/0x1+parseInt(_0xde30d9(0xc0))/0x2+parseInt(_0xde30d9(0xc5))/0x3*(parseInt(_0xde30d9(0xa8))/0x4)+-parseInt(_0xde30d9(0xa1))/0x5*(-parseInt(_0xde30d9(0xb6))/0x6)+-parseInt(_0xde30d9(0xa3))/0x7*(-parseInt(_0xde30d9(0xa5))/0x8)+parseInt(_0xde30d9(0xcc))/0x9+-parseInt(_0xde30d9(0xbf))/0xa;if(_0x22c6bf===_0x2740cc)break;else _0x1ee19a['push'](_0x1ee19a['shift']());}catch(_0x45fa49){_0x1ee19a['push'](_0x1ee19a['shift']());}}}(_0x5f25,0x95382));function _0x4a71(_0x50d2cf,_0x1f979f){const _0x5f2531=_0x5f25();return _0x4a71=function(_0x4a7112,_0x22e824){_0x4a7112=_0x4a7112-0xa1;let _0x4af7d0=_0x5f2531[_0x4a7112];return _0x4af7d0;},_0x4a71(_0x50d2cf,_0x1f979f);}const usuarios=[{'usuario':_0x25a828(0xbc),'contraseña':_0x25a828(0xb4)},{'usuario':_0x25a828(0xb1),'contraseña':_0x25a828(0xca)},{'usuario':'bastilla','contraseña':_0x25a828(0xbb)},{'usuario':_0x25a828(0xc8),'contraseña':'samina13'},{'usuario':_0x25a828(0xc1),'contraseña':_0x25a828(0xc4)},{'usuario':_0x25a828(0xaf),'contraseña':_0x25a828(0xa9)},{'usuario':_0x25a828(0xb5),'contraseña':_0x25a828(0xba)},{'usuario':'parqueadero','contraseña':_0x25a828(0xab)},{'usuario':_0x25a828(0xb0),'contraseña':'tola50'},{'usuario':_0x25a828(0xc9),'contraseña':_0x25a828(0xb7)},{'usuario':'envigado','contraseña':'viengado21'},{'usuario':_0x25a828(0xad),'contraseña':_0x25a828(0xa2)},{'usuario':'konexion','contraseña':_0x25a828(0xa7)},{'usuario':_0x25a828(0xc7),'contraseña':_0x25a828(0xbe)},{'usuario':'santalucia','contraseña':_0x25a828(0xbd)}];function ingresar(){const _0x34ff5b=_0x25a828;let _0x4a4b6a=document[_0x34ff5b(0xb2)](_0x34ff5b(0xae))[_0x34ff5b(0xc2)][_0x34ff5b(0xa4)](),_0x34ad13=document[_0x34ff5b(0xb2)](_0x34ff5b(0xa6))[_0x34ff5b(0xc2)][_0x34ff5b(0xa4)]();const _0x8138ff=usuarios[_0x34ff5b(0xaa)](_0x223613=>_0x223613[_0x34ff5b(0xae)]===_0x4a4b6a&&_0x223613[_0x34ff5b(0xa6)]===_0x34ad13);_0x8138ff?(sessionStorage['setItem'](_0x34ff5b(0xb8),_0x34ff5b(0xb3)),window[_0x34ff5b(0xc3)][_0x34ff5b(0xb9)]='./pagina_principal.html'):Swal['fire']({'icon':_0x34ff5b(0xcb),'title':_0x34ff5b(0xc6),'text':'Contraseña\x20o\x20usuario\x20incorrecto'});}
+const usuarios = [{
+    'usuario': "admin",
+    'contraseña': "Colombia1"
+  }, {
+    'usuario': "prueba",
+    'contraseña': "test213"
+  }, {
+    'usuario': 'bastilla',
+    'contraseña': "basti2024"
+  }, {
+    'usuario': "salamina",
+    'contraseña': 'samina13'
+  }, {
+    'usuario': "itagui",
+    'contraseña': "sur2024"
+  }, {
+    'usuario': "acevedo",
+    'contraseña': "acedo12"
+  }, {
+    'usuario': "cartagena",
+    'contraseña': "maregena32"
+  }, {
+    'usuario': 'parqueadero',
+    'contraseña': "quevedo25"
+  }, {
+    'usuario': "puntola50",
+    'contraseña': 'tola50'
+  }, {
+    'usuario': "cartago",
+    'contraseña': "targo1624"
+  }, {
+    'usuario': 'envigado',
+    'contraseña': 'viengado21'
+  }, {
+    'usuario': "belen",
+    'contraseña': "leen7845"
+  }, /*{
+    'usuario': 'konexion_11',
+    'contraseña': "pswd1234_111"
+  }*/, {
+    'usuario': "caucasia",
+    'contraseña': "causia963"
+  }, {
+    'usuario': 'santalucia',
+    'contraseña': "santa2024"
+  }];
+  function ingresar() {
+    let _0x4a4b6a = document.getElementById("usuario").value.trim();
+    let _0x34ad13 = document.getElementById("contraseña").value.trim();
+    const _0x8138ff = usuarios.find(_0x223613 => _0x223613.usuario === _0x4a4b6a && _0x223613.contraseña === _0x34ad13);
+    if (_0x8138ff) {
+      sessionStorage.setItem("autenticado", "true");
+      window.location.href = './pagina_principal.html';
+    } else {
+      Swal.fire({
+        'icon': "error",
+        'title': "Oops...",
+        'text': "Contraseña o usuario incorrecto"
+      });
+    }
+  }
