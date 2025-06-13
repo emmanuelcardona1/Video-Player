@@ -3,7 +3,7 @@ const usuarios = [
     { usuario: "prueba", contraseña: "test213" },
     // Usuarios Operativos
     { usuario: "bastilla", contraseña: "basti2024" },
-    //{ usuario: "itagui", contraseña: "sur2024" },//
+    { usuario: "itagui", contraseña: "sur2024" },
     { usuario: "acevedo", contraseña: "acedo12" },
     { usuario: "cartagena", contraseña: "maregena32" },
     { usuario: "parqueadero", contraseña: "quevedo25" },
