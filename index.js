@@ -4,7 +4,7 @@ const usuarios = [
     // Usuarios Operativos
     { usuario: "bastilla", contraseña: "basti2024" },
     { usuario: "itagui", contraseña: "sur2024" },
-    { usuario: "acevedo", contraseña: "acedo2025" },
+    { usuario: "acevedo", contraseña: "acedo12" },
     { usuario: "cartagena", contraseña: "maregena32" },
     { usuario: "parqueadero", contraseña: "quevedo25" },
     { usuario: "cartago", contraseña: "targo1624" },
