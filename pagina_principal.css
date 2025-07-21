@@ -29,12 +29,13 @@ button {
   background-color: #212121;
   cursor: pointer;
   color: white;
-  padding: 8px 30px;
+  padding: 8px 10px;
   transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
     letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
   flex-direction: column;
   margin: 4px 25px;
   width: 190px;
+  
 }
 
 button:hover {
@@ -58,7 +59,8 @@ button:active {
 }
 
 .botonescaballos {
-  margin-left: 16px;
+  margin-left: 11px;
+  
 }
 
 h1 {
