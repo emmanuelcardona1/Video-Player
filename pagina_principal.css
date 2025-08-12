@@ -19,11 +19,12 @@ header nav{
 button {
   letter-spacing: -0.3px;
   align-items: center;
-  white-space: nowrap;
-  
+  justify-content: center;
+ ;
+  display: flex;
   --accent: rgba(255, 255, 255, 0.471);
   font-weight: bold;
-  letter-spacing: 0.1em;
+  
   border-radius: 5px;
   border-color: aliceblue;
   background-color: #212121;
@@ -32,7 +33,7 @@ button {
   padding: 8px 10px;
   transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
     letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
-  flex-direction: column;
+ 
   margin: 2px 0px 2px 0px;
   width: 190px;
   
@@ -58,7 +59,10 @@ button:active {
 }
 
 .botonescaballos {
-  margin-left: 11px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   
 }
 
