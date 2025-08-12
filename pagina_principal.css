@@ -20,7 +20,7 @@ button {
   letter-spacing: -0.3px;
   align-items: center;
   white-space: nowrap;
-  display: flex;
+  
   --accent: rgba(255, 255, 255, 0.471);
   font-weight: bold;
   letter-spacing: 0.1em;
@@ -33,7 +33,7 @@ button {
   transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
     letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
   flex-direction: column;
-  margin: 4px 25px;
+  margin: 2px 0px 2px 0px;
   width: 190px;
   
 }
