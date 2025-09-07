@@ -30,7 +30,7 @@ function ingresar() {
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Te Invitamos a que visites la pagina carTV Para que puedas acceder al video"
+            text: "Usuario o Cantraseña Incorrectos"
         });
     }
 }
@@ -47,6 +47,6 @@ if (usuarioValido) {
     Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Te Invitamos a que visites la pagina carTV Para que puedas acceder al video  "
+        text: "Usuario o Cantraseña Incorrectos"
     });
 }
