@@ -1,15 +1,15 @@
 const usuarios = [
     { usuario: "admin", contraseña: "Colombia1" },
-    /* { usuario: "prueba", contraseña: "test213" }, */
+    { usuario: "prueba", contraseña: "test213" }, 
     // Usuarios Operativos
-    /* { usuario: "bastilla", contraseña: "basti2024" },
+    { usuario: "bastilla", contraseña: "basti2024" },
     { usuario: "itagui", contraseña: "sur2024" },
-    { usuario: "acevedo", contraseña: "acevedo401" },
+    { usuario: "acevedo", contraseña: "acevedo2026" },
     { usuario: "cartagena", contraseña: "maregena32" },
     { usuario: "parqueadero", contraseña: "quevedo25" },
     
     { usuario: "envigado", contraseña: "viengado21" },
-    { usuario: "belen", contraseña: "leen7845" } */
+    { usuario: "belen", contraseña: "leen7845" }
    
 ];
 
