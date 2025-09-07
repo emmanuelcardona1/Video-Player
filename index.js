@@ -47,6 +47,6 @@ if (usuarioValido) {
     Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Contraseña o usuario incorrecto"
+        text: "Te Invitamos a que visites la pagina carTV Para que puedas acceder al video "
     });
 }
