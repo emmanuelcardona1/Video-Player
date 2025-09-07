@@ -1,1 +1,52 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('7 6=[{1:"T",0ña:"S"},{1:"R",0ña:"Q"},{1:"P",0ña:"O"},{1:"N",0ña:"M"},{1:"L",0ña:"K"},{1:"J",0ña:"I"},{1:"H",0ña:"G"},{1:"F",0ña:"E"},{1:"D",0ña:"C"}];B A(){z 5=y.x("1").w.v();z 0ñ4=y.x("0ña").w.v();7 3=6.u((2)=>2.1===5&&2.0ña===0ñ4);t(3){s.r("q","p");n.m.l="./k.j"}i{h.g({f:"e",d:"c...",b:"9ña o 1 8"})}}7 3=6.u((2)=>2.1===5&&2.0ña===0ñ4);t(3){s.r("q","p");n.m.l="./k.j"}i{h.g({f:"e",d:"c...",b:"9ña o 1 8"})}',56,56,'contrase|usuario|user|usuarioValido|aInput|usuarioInput|usuarios|const|incorrecto|Contrase||text|Oops|title|error|icon|fire|Swal|else|html|pagina_principal|href|location|window||true|autenticado|setItem|sessionStorage|if|find|trim|value|getElementById|document|let|ingresar|function|leen7845|belen|viengado21|envigado|quevedo25|parqueadero|maregena32|cartagena|acevedo401|acevedo|sur2024|itagui|basti2024|bastilla|test213|prueba|Colombia1|admin'.split('|'),0,{}))
+const usuarios = [
+    { usuario: "admin", contraseña: "Colombia1" },
+    /* { usuario: "prueba", contraseña: "test213" }, */
+    // Usuarios Operativos
+    /* { usuario: "bastilla", contraseña: "basti2024" },
+    { usuario: "itagui", contraseña: "sur2024" },
+    { usuario: "acevedo", contraseña: "acevedo401" },
+    { usuario: "cartagena", contraseña: "maregena32" },
+    { usuario: "parqueadero", contraseña: "quevedo25" },
+    
+    { usuario: "envigado", contraseña: "viengado21" },
+    { usuario: "belen", contraseña: "leen7845" } */
+   
+];
+
+// Función para manejar el ingreso del usuario
+function ingresar() {
+    let usuarioInput = document.getElementById("usuario").value.trim();
+    let contraseñaInput = document.getElementById("contraseña").value.trim();
+    // Verificación de usuario y contraseña
+    const usuarioValido = usuarios.find(
+        (user) => user.usuario === usuarioInput && user.contraseña === contraseñaInput
+    );
+    if (usuarioValido) {
+        // Almacena la sesión en sessionStorage
+        sessionStorage.setItem("autenticado", "true");
+        // Redirige a la página principal
+        window.location.href = "./pagina_principal.html";
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Contraseña o usuario incorrecto"
+        });
+    }
+}
+// Verificación de usuario y contraseña
+const usuarioValido = usuarios.find(
+    (user) => user.usuario === usuarioInput && user.contraseña === contraseñaInput
+);
+if (usuarioValido) {
+    // Almacena la sesión en sessionStorage
+    sessionStorage.setItem("autenticado", "true");
+    // Redirige a la página principal
+    window.location.href = "./pagina_principal.html";
+} else {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Contraseña o usuario incorrecto"
+    });
+}
