@@ -1,1 +1,52 @@
-function _0xfaf1(_0x19ca49,_0x355a37){const _0x3deaa4=_0x3dea();return _0xfaf1=function(_0xfaf119,_0x4fdaf0){_0xfaf119=_0xfaf119-0x1e7;let _0x50f064=_0x3deaa4[_0xfaf119];return _0x50f064;},_0xfaf1(_0x19ca49,_0x355a37);}const _0x420f4b=_0xfaf1;(function(_0x47414d,_0x2df48e){const _0x4b419b=_0xfaf1,_0x400214=_0x47414d();while(!![]){try{const _0x50c61c=-parseInt(_0x4b419b(0x206))/0x1*(-parseInt(_0x4b419b(0x1f4))/0x2)+-parseInt(_0x4b419b(0x1ec))/0x3*(-parseInt(_0x4b419b(0x1e7))/0x4)+-parseInt(_0x4b419b(0x1f7))/0x5*(-parseInt(_0x4b419b(0x20c))/0x6)+-parseInt(_0x4b419b(0x1f9))/0x7+parseInt(_0x4b419b(0x1ee))/0x8+-parseInt(_0x4b419b(0x203))/0x9+-parseInt(_0x4b419b(0x205))/0xa;if(_0x50c61c===_0x2df48e)break;else _0x400214['push'](_0x400214['shift']());}catch(_0x1aaa08){_0x400214['push'](_0x400214['shift']());}}}(_0x3dea,0x44707));const usuarios=[{'usuario':'admin','contraseña':_0x420f4b(0x209)},{'usuario':_0x420f4b(0x1fe),'contraseña':_0x420f4b(0x20f)},{'usuario':_0x420f4b(0x1f3),'contraseña':_0x420f4b(0x1eb)},{'usuario':_0x420f4b(0x1f0),'contraseña':_0x420f4b(0x202)},{'usuario':_0x420f4b(0x20a),'contraseña':'acevedo2026'},{'usuario':_0x420f4b(0x1ef),'contraseña':_0x420f4b(0x1fd)},{'usuario':_0x420f4b(0x1fb),'contraseña':_0x420f4b(0x1f6)},{'usuario':_0x420f4b(0x1f5),'contraseña':_0x420f4b(0x200)},{'usuario':_0x420f4b(0x210),'contraseña':_0x420f4b(0x207)}];function ingresar(){const _0x53f4c4=_0x420f4b;let _0x3939b4=document[_0x53f4c4(0x20b)](_0x53f4c4(0x204))[_0x53f4c4(0x208)][_0x53f4c4(0x1fa)](),_0x5f419d=document[_0x53f4c4(0x20b)](_0x53f4c4(0x201))[_0x53f4c4(0x208)][_0x53f4c4(0x1fa)]();const _0x5b252c=usuarios[_0x53f4c4(0x1e8)](_0x383f14=>_0x383f14[_0x53f4c4(0x204)]===_0x3939b4&&_0x383f14[_0x53f4c4(0x201)]===_0x5f419d);_0x5b252c?(sessionStorage[_0x53f4c4(0x1f2)](_0x53f4c4(0x1f8),_0x53f4c4(0x1ed)),window[_0x53f4c4(0x20d)][_0x53f4c4(0x1e9)]=_0x53f4c4(0x1ff)):Swal[_0x53f4c4(0x20e)]({'icon':_0x53f4c4(0x1f1),'title':_0x53f4c4(0x1fc),'text':_0x53f4c4(0x1ea)});}function _0x3dea(){const _0x4c2453=['trim','parqueadero','Oops...','maregena32','prueba','./pagina_principal.html','viengado21','contraseña','sur2024','2988648InLwBx','usuario','2119770OhHVSh','390697Qvqzgx','leen7845','value','Colombia1','acevedo','getElementById','12wOVtcv','location','fire','test213','belen','131900qZalvK','find','href','Usuario\x20o\x20Cantraseña\x20Incorrectos','basti2024','18GJDdul','true','1143288wniGws','cartagena','itagui','error','setItem','bastilla','2axpUKH','envigado','quevedo25','482005gJMLcR','autenticado','699188pCwCln'];_0x3dea=function(){return _0x4c2453;};return _0x3dea();}const usuarioValido=usuarios['find'](_0x14b0b3=>_0x14b0b3[_0x420f4b(0x204)]===usuarioInput&&_0x14b0b3[_0x420f4b(0x201)]===contraseñaInput);usuarioValido?(sessionStorage[_0x420f4b(0x1f2)]('autenticado',_0x420f4b(0x1ed)),window[_0x420f4b(0x20d)][_0x420f4b(0x1e9)]='./pagina_principal.html'):Swal[_0x420f4b(0x20e)]({'icon':_0x420f4b(0x1f1),'title':_0x420f4b(0x1fc),'text':_0x420f4b(0x1ea)});
+const usuarios = [
+    { usuario: "admin", contraseña: "Colombia1" },
+    { usuario: "prueba", contraseña: "test213" },
+    // Usuarios Operativos
+    { usuario: "bastilla", contraseña: "basti2024" },
+    //{ usuario: "itagui", contraseña: "sur2024" },
+    { usuario: "acevedo", contraseña: "acevedo2026" },
+    { usuario: "cartagena", contraseña: "maregena32" },
+    { usuario: "parqueadero", contraseña: "quevedo25" },
+    
+    { usuario: "envigado", contraseña: "viengado21" },
+    { usuario: "belen", contraseña: "leen7845" }
+   
+];
+
+// Función para manejar el ingreso del usuario
+function ingresar() {
+    let usuarioInput = document.getElementById("usuario").value.trim();
+    let contraseñaInput = document.getElementById("contraseña").value.trim();
+    // Verificación de usuario y contraseña
+    const usuarioValido = usuarios.find(
+        (user) => user.usuario === usuarioInput && user.contraseña === contraseñaInput
+    );
+    if (usuarioValido) {
+        // Almacena la sesión en sessionStorage
+        sessionStorage.setItem("autenticado", "true");
+        // Redirige a la página principal
+        window.location.href = "./pagina_principal.html";
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Contraseña o usuario incorrecto"
+        });
+    }
+}
+// Verificación de usuario y contraseña
+const usuarioValido = usuarios.find(
+    (user) => user.usuario === usuarioInput && user.contraseña === contraseñaInput
+);
+if (usuarioValido) {
+    // Almacena la sesión en sessionStorage
+    sessionStorage.setItem("autenticado", "true");
+    // Redirige a la página principal
+    window.location.href = "./pagina_principal.html";
+} else {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Contraseña o usuario incorrecto"
+    });
+}
