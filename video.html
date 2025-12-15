@@ -5,40 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reproductor</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
   <style>
-    body {
-      margin: 0;
-      background: black;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-    }
-    .viewer {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
-    }
-    .show { display: block; }
+    body { margin:0; background:black; height:100vh; width:100vw; overflow:hidden; }
+    .viewer { width:100%; height:100%; border:none; display:none; }
+    .show { display:block; }
   </style>
 </head>
-
 <body>
 
   <video id="video" class="viewer" controls autoplay playsinline></video>
-
-  <iframe id="iframeAutorizado"
-    class="viewer"
-    allow="autoplay; fullscreen"
-    allowfullscreen></iframe>
+  <iframe id="iframeAutorizado" class="viewer" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
   <script>
-    // ✅ Protección: si no está autenticado, vuelve al login
+    // ✅ sesión
     const autenticado = sessionStorage.getItem("autenticado");
-    if (autenticado !== "true") {
-      window.location.href = "./index.html";
-    }
+    if (autenticado !== "true") window.location.href = "./index.html";
 
     const video = document.getElementById("video");
     const iframe = document.getElementById("iframeAutorizado");
@@ -47,7 +28,7 @@
     const streamParam = params.get("stream");
     const proveedorParam = params.get("proveedor");
 
-    // ✅ MODO HLS
+    // ✅ MODO HLS (igual al tuyo)
     if (streamParam) {
       const streamUrl = decodeURIComponent(streamParam);
       video.classList.add("show");
@@ -56,28 +37,32 @@
         const hls = new Hls();
         hls.loadSource(streamUrl);
         hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}));
+        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(()=>{}));
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = streamUrl;
-        video.addEventListener("loadedmetadata", () => video.play().catch(() => {}));
+        video.addEventListener("loadedmetadata", () => video.play().catch(()=>{}));
       } else {
         alert("Tu navegador no soporta reproducción HLS.");
       }
     }
 
-    // ✅ MODO PROVEEDOR (Railway)
+    // ✅ MODO PROVEEDOR (Railway tercero)
     else if (proveedorParam) {
       const proveedorUrl = decodeURIComponent(proveedorParam);
 
-      // 👇 Aquí está la clave: pasamos el proveedor a Railway
-      // Necesitas que Railway lo acepte y lo cargue internamente.
-      const railway = "https://getdomain-production.up.railway.app/embed.html";
-      iframe.src = `${railway}?url=${encodeURIComponent(proveedorUrl)}`;
+      // 🔥 CAMBIA SOLO ESTA LÍNEA cuando el tercero te diga el formato:
+      // Ejemplos posibles (uno de estos):
+      // const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
+      // const target = `https://getdomain-production.up.railway.app/?src=${encodeURIComponent(proveedorUrl)}`;
+      // const target = `https://getdomain-production.up.railway.app/#/player?u=${encodeURIComponent(proveedorUrl)}`;
 
+      const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
+
+      iframe.src = target;
       iframe.classList.add("show");
     }
 
-    // ✅ Si no llega nada, abre railway “general”
+    // ✅ si no llega nada, abre railway “normal”
     else {
       iframe.src = "https://getdomain-production.up.railway.app/";
       iframe.classList.add("show");

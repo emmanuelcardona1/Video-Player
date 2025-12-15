@@ -42,15 +42,17 @@
                 <div class="botonescaballos">
 
                     <!-- ✅ BOTÓN PROVEEDOR (Turf Paradise) -->
-                    <button class="btn-proveedor"
-                        data-proveedor="https://www.stream-horsetv.net/P2/s.php">
+                    <button class="btn-proveedor" data-proveedor="https://www.stream-horsetv.net/P2/s.php">
                         Turf Paradise (Proveedor)
                     </button>
 
                     <!-- ✅ Si quieres dejar el general -->
-                    <button class="btn-proveedor"
-                        data-proveedor="https://www.stream-horsetv.net/T9/s.php">
+                    <button class="btn-proveedor" data-proveedor="https://www.stream-horsetv.net/T9/s.php">
                         HORSE TV (Proveedor - General)
+                    </button>
+
+                    <button class="btn-proveedor" data-proveedor="https://www.stream-horsetv.net/P2/s.php">
+                        Turf Paradise (Proveedor)
                     </button>
 
                     <a
@@ -137,5 +139,16 @@
         });
     </script>
 
+    <script>
+  document.querySelectorAll(".btn-proveedor").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const proveedorUrl = btn.dataset.proveedor;
+      window.open(`video.html?proveedor=${encodeURIComponent(proveedorUrl)}`, "_blank");
+    });
+  });
+</script>
+
+
 </body>
+
 </html>
