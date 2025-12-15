@@ -3,61 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reproductor de Video</title>
+  <title>Reproductor / Iframe Autorizado</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     body {
       margin: 0;
       background-color: black;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      position: relative;
     }
 
-    video {
+    /* Contenedor común */
+    .viewer {
       width: 100%;
       height: 100%;
-      border: none;
+      border: 0;
     }
+
+    video.viewer { background: black; }
+    iframe.viewer { background: black; }
+
+    /* Botón opcional de pantalla completa */
+    .btn-fullscreen {
+      position: absolute;
+      z-index: 10;
+      right: 12px;
+      top: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(0,0,0,0.45);
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 14px;
+      user-select: none;
+      backdrop-filter: blur(6px);
+    }
+    .btn-fullscreen:active { transform: scale(0.98); }
+
+    .hidden { display: none !important; }
   </style>
 </head>
+
 <body>
-  <video id="video" controls autoplay></video>
+  <!-- Modo 1: Player HLS (si llega ?stream=...) -->
+  <video id="video" class="viewer hidden" controls autoplay playsinline></video>
+
+  <!-- Modo 2: Iframe autorizado (si NO llega ?stream=...) -->
+  <iframe
+    id="iframeAutorizado"
+    class="viewer hidden"
+    src="https://getdomain-production.up.railway.app/"
+    allow="autoplay; fullscreen"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+
+  <button id="btnFullscreen" class="btn-fullscreen">Pantalla completa</button>
 
   <script>
-    const video = document.getElementById('video');
-    const urlParams = new URLSearchParams(window.location.search);
-    const streamUrl = decodeURIComponent(urlParams.get('stream'));
-
-    function entrarPantallaCompleta() {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
+    // 1) Protección: si no está autenticado, volver al login
+    (function verificarAutenticacion() {
+      const autenticado = sessionStorage.getItem("autenticado");
+      if (autenticado !== "true") {
+        window.location.href = "./index.html";
       }
+    })();
+
+    // 2) Selección de modo
+    const video = document.getElementById("video");
+    const iframe = document.getElementById("iframeAutorizado");
+    const btnFullscreen = document.getElementById("btnFullscreen");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const rawStreamParam = urlParams.get("stream"); // si existe => modo HLS
+    const streamUrl = rawStreamParam ? decodeURIComponent(rawStreamParam) : null;
+
+    // Helper: entrar a pantalla completa del elemento activo
+    function entrarPantallaCompleta(elemento) {
+      if (!elemento) return;
+      if (elemento.requestFullscreen) return elemento.requestFullscreen();
+      if (elemento.webkitRequestFullscreen) return elemento.webkitRequestFullscreen();
+      if (elemento.msRequestFullscreen) return elemento.msRequestFullscreen();
     }
 
-    if (!streamUrl) {
-      alert("No se ha proporcionado una URL de video válida.");
-    } else if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(streamUrl);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play();
-        setTimeout(() => entrarPantallaCompleta(), 500);
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = streamUrl;
-      video.addEventListener('loadedmetadata', () => {
-        video.play();
-        setTimeout(() => entrarPantallaCompleta(), 500);
-      });
+    // Click del botón (fullscreen exige gesto del usuario)
+    btnFullscreen.addEventListener("click", () => {
+      if (!video.classList.contains("hidden")) entrarPantallaCompleta(video);
+      else entrarPantallaCompleta(iframe);
+    });
+
+    // 3) Modo HLS
+    if (streamUrl) {
+      video.classList.remove("hidden");
+      iframe.classList.add("hidden");
+
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(streamUrl);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play().catch(() => {});
+        });
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = streamUrl;
+        video.addEventListener("loadedmetadata", () => {
+          video.play().catch(() => {});
+        });
+      } else {
+        alert("Tu navegador no soporta reproducción HLS.");
+      }
     } else {
-      alert("Tu navegador no soporta reproducción HLS.");
+      // 4) Modo IFRAME autorizado
+      iframe.classList.remove("hidden");
+      video.classList.add("hidden");
+      // El recurso del proveedor NO se expone aquí;
+      // el iframe autorizado es el que lo consume internamente.
     }
   </script>
 </body>
