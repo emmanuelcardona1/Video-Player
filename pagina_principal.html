@@ -9,94 +9,90 @@
     <link rel="stylesheet" href="pagina_principal.css" />
 
     <script>
-        //Refresca La Pagina Cada 4 Segundos
         setTimeout(function () {
             location.reload();
         }, 4000);
     </script>
 
     <script>
-        // Verificar si el usuario está autenticado
         function verificarAutenticacion() {
             const autenticado = sessionStorage.getItem("autenticado");
-
-            if (autenticado !== "true") {
-                // Si no está autenticado, redirigir a la página de login
-                window.location.href = "./index.html";
-            }
+            if (autenticado !== "true") window.location.href = "./index.html";
         }
-
-        // Ejecutar la verificación cuando la página cargue
         window.onload = verificarAutenticacion;
     </script>
-    <script>
-        // Función para cerrar la sesión
-        // Función para cerrar la sesión
-        function cerrarSesion() {
-            // Elimina el indicador de autenticación
-            sessionStorage.removeItem("autenticado");
 
-            // Redirige a la página de login
+    <script>
+        function cerrarSesion() {
+            sessionStorage.removeItem("autenticado");
             window.location.href = "./index.html";
         }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 
 <body>
-    <!--   <header >
-        <nav >
-            <button onclick="cerrarSesion()" style="letter-spacing: -0.5px; "> CERRAR SESION</button>
-        </nav>
-    </header> -->
     <main>
         <div class="padre">
             <div class="caballos">
                 <h2>VIDEO</h2>
                 <h1>carreras caballos</h1>
+
                 <div class="botonescaballos">
 
-                    <!-- Iframe autorizado (abre el entorno de tu hosting aprobado) -->
-                    <button id="openIframeAutorizado" type="button">HORSE TV (Proveedor)</button>
+                    <!-- ✅ BOTÓN PROVEEDOR (Turf Paradise) -->
+                    <button class="btn-proveedor"
+                        data-proveedor="https://www.stream-horsetv.net/P2/s.php">
+                        Turf Paradise (Proveedor)
+                    </button>
+
+                    <!-- ✅ Si quieres dejar el general -->
+                    <button class="btn-proveedor"
+                        data-proveedor="https://www.stream-horsetv.net/T9/s.php">
+                        HORSE TV (Proveedor - General)
+                    </button>
 
                     <a
-                        href="rtmp://wms.robertsstream.com/flashlive/gulfstream_hd_fm_2200?tkhash=hvUqzbBdXWlPrxg_jxrUA_xO-jKDz-FHdgvuJiVhfTM=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852886"><button
+                        href="rtmp://wms.robertsstream.com/flashlive/gulfstream_hd_fm_2200?tkhash=fo3x8vI6tzY3mEXxxhT8tuIRAYq53-arDPWswuqnF_c=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840612"><button
                             type="submit">Gulfstream Simulcast</button></a>
 
                     <a
                         href="rtmp://wms.robertsstream.com/flashlive/aqueduct_hd_fm_2200?tkhash=1OZnmPiRYAwcAQku8aib3NE5qUoWOdGZQ6E7IuoxHdI=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765670004"><button
                             type="submit">Parx R (Cancelado)</button></a>
+
                     <a
                         href="rtmp://wms.robertsstream.com/flashlive/mahoning_valley_hd_fm_2200?tkhash=7OU6EcR6mm1Xr1NI5FwjonC2BUb1UkERKzwJ1k-Auas=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765827883"><button
                             type="submit">Mahoning (Cancelado)</button></a>
 
                     <a
-                        href="rtmp://wms.robertsstream.com/flashlive/laurel_hd_fm_2200?tkhash=aLGw9qDmw3LTBRK9gIuiSz4GUqSek1uaP9jHiwO4Tb8=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852804"><button
-                            type="submit">Laurel Simulcast</button></a>        
+                        href="rtmp://wms.robertsstream.com/flashlive/laurel_hd_fm_2200?tkhash=GlRgNKjuVpx3vsBiTLnhSAhA3-mScxk-PI7uc_i8St8=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840436"><button
+                            type="submit">Laurel Simulcast</button></a>
 
                     <a
                         href="rtmp://wms.robertsstream.com/flashlive/zia_park_fm_1308?tkhash=GlRgNKjuVpx3vsBiTLnhSAhA3-mScxk-PI7uc_i8St8=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840436"><button
                             type="submit">Zia Park</button></a>
 
                     <a
-                        href="rtmp://wms.robertsstream.com/flashlive/turf_paradise_hd_fm_2200?tkhash=y1cWgPW-VFcbIIQzODLEvuFJFMRs7Nw6q2sj8jIzeHc=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852745"><button
+                        href="rtmp://wms.robertsstream.com/flashlive/turf_paradise_hd_fm_2200?tkhash=UW5pumsyBzN6xTuTZhVTspIMTuZLW4doPoP9ceAV09w=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840361"><button
                             type="submit">Turf Paradise</button></a>
                 </div>
             </div>
+
             <div class="multivideo">
                 <h2>VIDEO</h2>
                 <h1>canales multivideo</h1>
 
                 <a
-                    href="rtmp://wms.robertsstream.com/flashlive/capitalotb_hd_fm_2200?tkhash=Q-XC0eAIbF_IPJxuSrpBs40VM7Nmyc36f3tiS99BgLw=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852713"><button
+                    href="rtmp://wms.robertsstream.com/flashlive/capitalotb_hd_fm_2200?tkhash=nctHYnsg3Nd714u993n2K-bcp5OU2Hr5xbOwgv69aHk=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840643"><button
                         type="submit">Capital OTB</button></a>
 
-                <button id="openPlayerBtn" class="btn-video"
+                <button class="btn-video"
                     data-url="https://calidad.uk:4433/hls/tvg1/index.m3u8?hash=140b0e0a252d1d1914d2c5f09f718e0a">
                     TVG 1
                 </button>
 
-                <button id="openPlayerBtn" class="btn-video"
+                <button class="btn-video"
                     data-url="https://calidad.uk:4433/hls/tvg2/index.m3u8?hash=140b0e0a252d1d1914d2c5f09f718e0a">
                     TVG 2
                 </button>
@@ -106,44 +102,21 @@
                         style="height: 650px; width: 500px; object-fit: contain" />
                 </div>
             </div>
+
             <div class="carretas">
                 <h2>VIDEO</h2>
                 <h1>Carreras Carretas</h1>
                 <div class="botonescaballos">
-
                     <a
                         href="rtmp://wms.robertsstream.com/flashlive/saratoga_harness_hd_fm_2200?tkhash=Sp8d5Qv3cIduQMYKC87b2RdsLOs3DJ7Bkixxol5Tsoo=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840823"><button
                             type="submit">Saratoga HRN</button></a>
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/monticello_hd_fm_2200?tkhash=mpmZLGzXpzITrUDEq8bXs8vzzY73JB_jN7GJmo7f_9s=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765840862"><button
-                            type="submit">Monticello</button></a>
-
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/dover_hd_fm_2200?tkhash=_foGRJeUHY-8RtHI3OkQ1PGBtEVI1z1BZjDQ5j6BBzQ=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765853106"><button
-                            type="submit">Dover Downs</button></a>
-
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/western_fair_hd_fm_2200?tkhash=fJKXAtc7bRQJq1C5byZAIQrx7i0W7lRCSg_9bxS87Ig=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765853065"><button
-                            type="submit">Western Fair</button></a>
-
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/woodbine_mohawk_hd_fm_2200?tkhash=nfoIcObgaLgi1778Z9zySgQBC0SlP22ALESzJpLmHkE=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765853011"><button
-                            type="submit">Woodbine HRN</button></a>
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/yonkers_hd_fm_2200?tkhash=8wRO-jnZ55MOi7K2xL6XwMiiDly3lB3XHcRI9XAX50c=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852980"><button
-                            type="submit">Yonkers</button></a>
-                    <a
-                        href="rtmp://wms.robertsstream.com/flashlive/rosecroft_fm_1308?tkhash=d3XuSBjQYFh0EJOK8oBio6EwfsL78Z33VGuB6c-FNN4=&cust=RTN&type=live&user=62294&optp=pid:38|tid:&tkendtime=1765852951"><button
-                            type="submit">Rosecroft</button></a>
-
-                    <br />
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- ✅ Tus HLS siguen igual -->
     <script>
-        // Tus botones HLS (ya existentes): abren video.html?stream=...
         document.querySelectorAll(".btn-video").forEach((btn) => {
             btn.addEventListener("click", () => {
                 const url = btn.dataset.url;
@@ -153,45 +126,15 @@
         });
     </script>
 
+    <!-- ✅ Botones proveedor: abren video.html?proveedor=... -->
     <script>
-        function verVideo(url) {
-            const encoded = encodeURIComponent(url);
-            window.location.href = `video.html?stream=${encoded}`;
-        }
-    </script>
-
-    <script>
-        function reproducirM3U8(url) {
-            const video = document.getElementById("video");
-            const contenedor = document.getElementById("contenedor-video");
-            contenedor.style.display = "block";
-
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(url);
-                hls.attachMedia(video);
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    video.play();
-                });
-            } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                video.src = url;
-                video.addEventListener("loadedmetadata", () => {
-                    video.play();
-                });
-            } else {
-                alert("Tu navegador no soporta este tipo de video.");
-            }
-        }
-    </script>
-
-    <script>
-        // Botón nuevo: abre la página que contiene el IFRAME autorizado
-        const btnIframe = document.getElementById('openIframeAutorizado');
-        if (btnIframe) {
-            btnIframe.addEventListener('click', () => {
-                window.open('video.html', '_blank');
+        document.querySelectorAll(".btn-proveedor").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const proveedorUrl = btn.dataset.proveedor;
+                const encoded = encodeURIComponent(proveedorUrl);
+                window.open(`video.html?proveedor=${encoded}`, "_blank");
             });
-        }
+        });
     </script>
 
 </body>

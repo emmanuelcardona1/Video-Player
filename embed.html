@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Embed</title>
+  <style>
+    html,body{margin:0;height:100%;background:#000}
+    iframe{width:100%;height:100%;border:0}
+  </style>
+</head>
+<body>
+  <iframe id="f" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+  <script>
+    const p = new URLSearchParams(location.search);
+    const url = p.get("url");
+
+    if (!url) {
+      document.body.innerHTML = "<h2 style='color:white;font-family:Arial;padding:20px'>Falta parámetro ?url=</h2>";
+    } else {
+      // 👇 Aquí Railway carga el proveedor
+      document.getElementById("f").src = url;
+    }
+  </script>
+</body>
+</html>
