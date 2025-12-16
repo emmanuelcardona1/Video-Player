@@ -28,7 +28,7 @@
     const streamParam = params.get("stream");
     const proveedorParam = params.get("proveedor");
 
-    // ✅ MODO HLS
+    // ✅ MODO HLS (igual al tuyo)
     if (streamParam) {
       const streamUrl = decodeURIComponent(streamParam);
       video.classList.add("show");
@@ -50,24 +50,20 @@
     else if (proveedorParam) {
       const proveedorUrl = decodeURIComponent(proveedorParam);
 
-      // Ajusta el formato de target si Railway espera otro parámetro
-      const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
+      // 🔥 CAMBIA SOLO ESTA LÍNEA cuando el tercero te diga el formato:
+      // Ejemplos posibles (uno de estos):
+      // const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
+      // const target = `https://getdomain-production.up.railway.app/?src=${encodeURIComponent(proveedorUrl)}`;
+      // const target = `https://getdomain-production.up.railway.app/#/player?u=${encodeURIComponent(proveedorUrl)}`;
 
-      // Asegurar permisos antes de asignar src (importante para autoplay/fullscreen)
-      iframe.setAttribute('allow', 'autoplay; fullscreen');
-      // opcional: quitar referrer si el servicio lo requiere
-      // iframe.setAttribute('referrerpolicy', 'no-referrer');
+      const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
 
       iframe.src = target;
       iframe.classList.add("show");
-
-      // DEBUG: (puedes activar en desarrollo)
-      // console.log('Cargando iframe:', target);
     }
 
     // ✅ si no llega nada, abre railway “normal”
     else {
-      iframe.setAttribute('allow', 'autoplay; fullscreen');
       iframe.src = "https://getdomain-production.up.railway.app/";
       iframe.classList.add("show");
     }
