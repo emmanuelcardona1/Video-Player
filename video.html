@@ -3,69 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reproductor</title>
+  <title>Reproductor de Video</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    body { margin:0; background:black; height:100vh; width:100vw; overflow:hidden; }
-    .viewer { width:100%; height:100%; border:none; display:none; }
-    .show { display:block; }
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
 <body>
-
-  <video id="video" class="viewer" controls autoplay playsinline></video>
-  <iframe id="iframeAutorizado" class="viewer" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <video id="video" controls autoplay></video>
 
   <script>
-    // ✅ sesión
-    const autenticado = sessionStorage.getItem("autenticado");
-    if (autenticado !== "true") window.location.href = "./index.html";
+    const video = document.getElementById('video');
+    const urlParams = new URLSearchParams(window.location.search);
+    const streamUrl = decodeURIComponent(urlParams.get('stream'));
 
-    const video = document.getElementById("video");
-    const iframe = document.getElementById("iframeAutorizado");
-
-    const params = new URLSearchParams(window.location.search);
-    const streamParam = params.get("stream");
-    const proveedorParam = params.get("proveedor");
-
-    // ✅ MODO HLS (igual al tuyo)
-    if (streamParam) {
-      const streamUrl = decodeURIComponent(streamParam);
-      video.classList.add("show");
-
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(streamUrl);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(()=>{}));
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = streamUrl;
-        video.addEventListener("loadedmetadata", () => video.play().catch(()=>{}));
-      } else {
-        alert("Tu navegador no soporta reproducción HLS.");
+    function entrarPantallaCompleta() {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
       }
     }
 
-    // ✅ MODO PROVEEDOR (Railway tercero)
-    else if (proveedorParam) {
-      const proveedorUrl = decodeURIComponent(proveedorParam);
-
-      // 🔥 CAMBIA SOLO ESTA LÍNEA cuando el tercero te diga el formato:
-      // Ejemplos posibles (uno de estos):
-      // const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
-      // const target = `https://getdomain-production.up.railway.app/?src=${encodeURIComponent(proveedorUrl)}`;
-      // const target = `https://getdomain-production.up.railway.app/#/player?u=${encodeURIComponent(proveedorUrl)}`;
-
-      const target = `https://getdomain-production.up.railway.app/?url=${encodeURIComponent(proveedorUrl)}`;
-
-      iframe.src = target;
-      iframe.classList.add("show");
-    }
-
-    // ✅ si no llega nada, abre railway “normal”
-    else {
-      iframe.src = "https://getdomain-production.up.railway.app/";
-      iframe.classList.add("show");
+    if (!streamUrl) {
+      alert("No se ha proporcionado una URL de video válida.");
+    } else if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(streamUrl);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+        setTimeout(() => entrarPantallaCompleta(), 500);
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = streamUrl;
+      video.addEventListener('loadedmetadata', () => {
+        video.play();
+        setTimeout(() => entrarPantallaCompleta(), 500);
+      });
+    } else {
+      alert("Tu navegador no soporta reproducción HLS.");
     }
   </script>
 </body>
