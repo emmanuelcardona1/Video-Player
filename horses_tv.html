@@ -43,32 +43,43 @@
   </div>
 
   <script>
+    /**
+     * SEGURIDAD AVANZADA:
+     * 1. Validar dominio si existe Referrer.
+     * 2. Bloquear si intentan abrir el link directamente en una pestaña (fuera de iframe).
+     */
     const dominiosValidos = [
         "luxuryvideofrontend.onrender.com",
-        "luxuryvideo.onrender.com"
+        "luxuryvideo.onrender.com",
+        "render.com"
     ];
     
     const referrer = document.referrer;
-    // Ahora validamos de forma estricta: si no es uno de mis dominios, ES FALSO.
     const esAutorizado = dominiosValidos.some(dominio => referrer.includes(dominio));
+    
+    // Verificamos si la página está metida dentro de un iframe (nuestro caso legítimo)
+    const estaEnIframe = (window.self !== window.top);
 
-    // CORRECCIÓN DE SEGURIDAD: Bloqueamos si NO está autorizado (incluyendo accesos directos vacíos)
-    if (!esAutorizado) {
-        document.getElementById("horsesFrame").remove(); // Eliminamos el iframe por completo
+    // LÓGICA DE BLOQUEO:
+    // Bloqueamos si: 
+    // - Hay un origen y no es el nuestro (intento de robo desde otra web)
+    // - O si NO estamos en un iframe (intento de abrir el link directo en el navegador)
+    if ((referrer !== "" && !esAutorizado) || (!estaEnIframe)) {
+        document.getElementById("horsesFrame").remove(); 
         document.getElementById("errorMessage").style.display = "flex";
-        console.error("Bloqueo de seguridad: Acceso directo o dominio no autorizado.");
+        console.error("Acceso denegado: Este contenido no permite visualización directa.");
     } else {
+        // CASO EXITOSO: Estamos dentro de la app o el referrer es correcto
         const params = new URLSearchParams(window.location.search);
         const id = (params.get("id") || "").trim();
 
         if (id) {
           const horsesFrame = document.getElementById("horsesFrame");
-          // Cargamos el stream original
           horsesFrame.src = `https://stream-horsetv.net/${encodeURIComponent(id)}/s.php`;
+          horsesFrame.style.display = "block";
         }
     }
 
-    // Bloqueos de UI
     document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
