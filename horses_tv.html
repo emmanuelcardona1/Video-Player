@@ -25,32 +25,36 @@
 
   <script>
     /**
-     * SEGURIDAD 1: Validación de Referer (Dominio)
-     * Solo permite la carga si la petición viene de tu frontend oficial en Render.
+     * SEGURIDAD: Validación de Origen Flexible
+     * Aceptamos peticiones que vengan de tus dos dominios de Render.
      */
-    const DOMINIO_AUTORIZADO = "luxuryvideofrontend.onrender.com";
+    const dominiosValidos = [
+        "luxuryvideofrontend.onrender.com",
+        "luxuryvideo.onrender.com"
+    ];
+    
     const referrer = document.referrer;
+    // Verificamos si el origen coincide con alguno de tus dominios
+    const esAutorizado = dominiosValidos.some(dominio => referrer.includes(dominio));
 
-    // Si entran directo (sin referrer) o desde otro dominio, bloqueamos
-    if (!referrer || !referrer.includes(DOMINIO_AUTORIZADO)) {
+    // Si quieres ser menos estricto mientras pruebas, puedes comentar el "if" de bloqueo
+    // pero para producción, mantén esta lógica:
+    if (referrer !== "" && !esAutorizado) {
         document.getElementById("errorMessage").style.display = "block";
-        console.error("Bloqueo de seguridad: Origen no permitido.");
+        console.error("Bloqueo: Origen no autorizado ->", referrer);
     } else {
-        // SEGURIDAD 2: Procesar el ID solo si el dominio es correcto
         const params = new URLSearchParams(window.location.search);
         const id = (params.get("id") || "").trim();
 
         if (!id) {
-          alert("ID de transmisión faltante.");
+          document.getElementById("errorMessage").innerHTML = "<h2>ID de canal faltante</h2>";
+          document.getElementById("errorMessage").style.display = "block";
         } else {
-          // Mostramos el iframe y cargamos el video
           const horsesFrame = document.getElementById("horsesFrame");
           horsesFrame.style.display = "block";
           horsesFrame.src = `https://stream-horsetv.net/${encodeURIComponent(id)}/s.php`;
         }
     }
-
-    // Deshabilitar inspección básica dentro del iframe
     document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
