@@ -3,32 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HORSES TV</title>
+  <title>HORSES TV - SECURE</title>
   <style>
-    html, body { height: 100%; margin: 0; background: #000; }
+    html, body { height: 100%; margin: 0; background: #000; color: white; display: flex; align-items: center; justify-content: center; font-family: sans-serif; }
     .video-container { width: 100%; height: 100%; }
     iframe { width: 100%; height: 100%; border: 0; }
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <iframe id="horsesFrame"
+  <div id="mainContainer" class="video-container">
+    <div id="errorMessage" style="display:none; text-align: center;">
+        <h2>Acceso No Autorizado</h2>
+        <p>Este contenido solo está disponible en Luxury Video.</p>
+    </div>
+    <iframe id="horsesFrame" style="display:none;"
       title="Horses TV"
-      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allow="autoplay; encrypted-media; fullscreen;"
       allowfullscreen>
     </iframe>
   </div>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = (params.get("id") || "").trim(); // <- ESTE ES tu "normalized"
+    /**
+     * SEGURIDAD 1: Validación de Referer (Dominio)
+     * Solo permite la carga si la petición viene de tu frontend oficial en Render.
+     */
+    const DOMINIO_AUTORIZADO = "luxuryvideofrontend.onrender.com";
+    const referrer = document.referrer;
 
-    if (!id) {
-      alert("Falta el ID del hipódromo. Ej: horses_tv.html?id=Z1");
+    // Si entran directo (sin referrer) o desde otro dominio, bloqueamos
+    if (!referrer || !referrer.includes(DOMINIO_AUTORIZADO)) {
+        document.getElementById("errorMessage").style.display = "block";
+        console.error("Bloqueo de seguridad: Origen no permitido.");
     } else {
-      const src = `https://stream-horsetv.net/${encodeURIComponent(id)}/s.php`;
-      document.getElementById("horsesFrame").src = src;
+        // SEGURIDAD 2: Procesar el ID solo si el dominio es correcto
+        const params = new URLSearchParams(window.location.search);
+        const id = (params.get("id") || "").trim();
+
+        if (!id) {
+          alert("ID de transmisión faltante.");
+        } else {
+          // Mostramos el iframe y cargamos el video
+          const horsesFrame = document.getElementById("horsesFrame");
+          horsesFrame.style.display = "block";
+          horsesFrame.src = `https://stream-horsetv.net/${encodeURIComponent(id)}/s.php`;
+        }
     }
+
+    // Deshabilitar inspección básica dentro del iframe
+    document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
 </html>
