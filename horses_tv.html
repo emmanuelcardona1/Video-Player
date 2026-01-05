@@ -3,58 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HORSES TV - SECURE</title>
+  <title>HORSES TV - PROTECTED</title>
   <style>
-    html, body { height: 100%; margin: 0; background: #000; color: white; display: flex; align-items: center; justify-content: center; font-family: sans-serif; }
+    /* Eliminamos el FLEX para que el video use todo el ancho disponible */
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      padding: 0;
+      background: #000; 
+      color: white; 
+      overflow: hidden;
+    }
     .video-container { width: 100%; height: 100%; }
-    iframe { width: 100%; height: 100%; border: 0; }
+    iframe { width: 100%; height: 100%; border: 0; display: block; }
+    
+    #errorMessage {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: sans-serif;
+    }
   </style>
 </head>
 <body>
   <div id="mainContainer" class="video-container">
-    <div id="errorMessage" style="display:none; text-align: center;">
-        <h2>Acceso No Autorizado</h2>
-        <p>Este contenido solo está disponible en Luxury Video.</p>
+    <!-- Mensaje de error (ahora es un flexbox propio para centrar el texto) -->
+    <div id="errorMessage">
+        <h2 style="color: #ff4d4d;">Acceso No Autorizado</h2>
+        <p>Este contenido solo está disponible desde el portal oficial de Luxury Video.</p>
     </div>
-    <iframe id="horsesFrame" style="display:none;"
+    
+    <iframe id="horsesFrame"
       title="Horses TV"
-      allow="autoplay; encrypted-media; fullscreen;"
-      allowfullscreen>
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
   </div>
 
   <script>
-    /**
-     * SEGURIDAD: Validación de Origen Flexible
-     * Aceptamos peticiones que vengan de tus dos dominios de Render.
-     */
     const dominiosValidos = [
         "luxuryvideofrontend.onrender.com",
         "luxuryvideo.onrender.com"
     ];
     
     const referrer = document.referrer;
-    // Verificamos si el origen coincide con alguno de tus dominios
+    // Ahora validamos de forma estricta: si no es uno de mis dominios, ES FALSO.
     const esAutorizado = dominiosValidos.some(dominio => referrer.includes(dominio));
 
-    // Si quieres ser menos estricto mientras pruebas, puedes comentar el "if" de bloqueo
-    // pero para producción, mantén esta lógica:
-    if (referrer !== "" && !esAutorizado) {
-        document.getElementById("errorMessage").style.display = "block";
-        console.error("Bloqueo: Origen no autorizado ->", referrer);
+    // CORRECCIÓN DE SEGURIDAD: Bloqueamos si NO está autorizado (incluyendo accesos directos vacíos)
+    if (!esAutorizado) {
+        document.getElementById("horsesFrame").remove(); // Eliminamos el iframe por completo
+        document.getElementById("errorMessage").style.display = "flex";
+        console.error("Bloqueo de seguridad: Acceso directo o dominio no autorizado.");
     } else {
         const params = new URLSearchParams(window.location.search);
         const id = (params.get("id") || "").trim();
 
-        if (!id) {
-          document.getElementById("errorMessage").innerHTML = "<h2>ID de canal faltante</h2>";
-          document.getElementById("errorMessage").style.display = "block";
-        } else {
+        if (id) {
           const horsesFrame = document.getElementById("horsesFrame");
-          horsesFrame.style.display = "block";
+          // Cargamos el stream original
           horsesFrame.src = `https://stream-horsetv.net/${encodeURIComponent(id)}/s.php`;
         }
     }
+
+    // Bloqueos de UI
     document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
