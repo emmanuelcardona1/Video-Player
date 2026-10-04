@@ -56,7 +56,12 @@
     ];
     
     const referrer = document.referrer;
-    const esAutorizado = dominiosValidos.some(dominio => referrer.includes(dominio));
+    // ancestorOrigins lista todos los padres del iframe (no depende del Referrer-Policy)
+    const ancestros = Array.from(window.location.ancestorOrigins || []);
+    const esAutorizado = [referrer, ...ancestros].some(origen =>
+        dominiosValidos.some(dominio => origen.includes(dominio))
+    );
+    console.log("Referrer:", referrer, "| Ancestros:", ancestros);
     
     // Verificamos si la página está metida dentro de un iframe (nuestro caso legítimo)
     const estaEnIframe = (window.self !== window.top);
